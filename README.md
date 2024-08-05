@@ -1,1 +1,1 @@
-# EmirhanKaplan-GulDiyet-ASP.net-Core--master
+# EmirhanKaplan-GulDiyet-ASP.net-Core
