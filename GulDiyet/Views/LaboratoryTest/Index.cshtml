@@ -1,0 +1,39 @@
+﻿@using GulDiyet.Core.Application.ViewModels.LaboratoryTests
+@model List<LaboratoryTestViewModel>
+
+@{
+    ViewData["Title"] = "Laboratuvar Testleri";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Laboratuvar Testleri</h1>
+    <a asp-controller="LaboratoryTest" asp-action="Create" class="btn btn-primary-custom mb-3">
+        <i class="bi bi-plus-circle-fill"></i> Test Ekle
+    </a>
+    <div class="border rounded-3 p-4 bg-white shadow-sm">
+        <table class="table table-hover">
+            <thead class="fw-bold fs-5">
+                <tr>
+                    <th>İsim</th>
+                    <th class="text-end">Seçenekler</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (LaboratoryTestViewModel labTest in Model)
+                {
+                    <tr>
+                        <td>@labTest.Name</td>
+                        <td class="text-end">
+                            <a class="btn btn-secondary btn-sm" asp-controller="LaboratoryTest" asp-action="Edit" asp-route-id="@labTest.Id">
+                                <i class="bi bi-pencil-square"></i> Düzenle
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-controller="LaboratoryTest" asp-action="Delete" asp-route-id="@labTest.Id">
+                                <i class="bi bi-trash-fill"></i> Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

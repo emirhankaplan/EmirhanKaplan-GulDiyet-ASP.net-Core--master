@@ -1,0 +1,63 @@
+﻿@using GulDiyet.Core.Application.Enums
+@using GulDiyet.Core.Application.ViewModels.LaboratoryResult
+@model List<LaboratoryResultViewModel>
+
+@{
+    ViewData["Title"] = "Laboratuvar Sonuçları";
+}
+
+<div class="container">
+    <h1 class="">Laboratuvar Sonuçları</h1>
+    <div class="border rounded-3 p-4 mt-4 bg-white">
+        <table class="table table-hover">
+            <thead class="fw-bold fs-4">
+                <tr>
+                    <th class="">Yapılan Test</th>
+                    <th class="">Durum</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (LaboratoryResultViewModel labResult in Model)
+                {
+                    <tr class="align-middle">
+                        <td class="py-3 fs-6">
+                            @labResult.LaboratoryTestName
+                        </td>
+                        <td class="py-3">
+                            @if (@labResult.IsCompleted == true)
+                            {
+                                <text>Tamamlandı</text>
+                            }
+                            else
+                            {
+                                <text>Bekliyor</text>
+
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <div class="text-end align-items-center">
+            @if (ViewBag.Status != null && ViewBag.Status == nameof(Status.Completed))
+            {
+                <a class="btn btn-secondary btn-sm" asp-controller="Appointment" asp-action="Index">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Sonuçları Kapat
+                </a>
+            }
+            else
+            {
+                <a class="btn btn-primary-custom btn-sm me-2" asp-controller="Appointment" asp-action="CompleteAppointment" asp-route-id=@Model.FirstOrDefault().AppointmentId>
+                    <i class="bi bi-check-circle-fill"></i>
+                    Randevuyu Tamamla
+                </a>
+                <a class="btn btn-secondary btn-sm" asp-controller="Appointment" asp-action="Index">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Sonuçları Kapat
+                </a>
+            }
+        </div>
+    </div>
+</div>

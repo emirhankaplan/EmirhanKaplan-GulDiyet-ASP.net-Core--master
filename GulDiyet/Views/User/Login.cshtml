@@ -1,0 +1,41 @@
+﻿@using GulDiyet.Core.Application.ViewModels.Users
+@model LoginViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";    
+    <style>
+        .login-container {
+            background-image: url('/images/login-background.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Set height to cover viewport */
+        }
+    </style>
+}
+
+<div class="container mt-5 w-25 login-container">
+    <h1>Giriş Yap</h1>
+    <div class="card card-box-shadow">
+        <div class="card-body">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post" asp-controller="User" asp-action="Login">
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label"></label>
+                    <input type="text" asp-for="Username" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+
+                <div class="text-center pt-3">
+                    <button class="btn btn-primary w-50">Giriş Yap</button>
+                    <a class="btn btn-success" asp-action="Register">Kayıt Ol</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

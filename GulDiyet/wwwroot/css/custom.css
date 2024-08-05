@@ -1,0 +1,141 @@
+﻿/* Özel stil ayarları */
+:root {
+    --bs-green: #00F0BE;
+    --bs-darkblue: #002855;
+    --bs-primary-hover: #00DCBE;
+    --bs-secondary-hover: #004164;
+    --bs-dark-primary: #0B0F19;
+    --bs-dark-secondary: #151822;
+    --bs-primary: #00F0BE;
+    --bs-light: #F1F5F9;
+    --bs-shadow-light: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bs-light);
+    font-family: 'Inter', sans-serif;
+    color: var(--bs-dark-primary);
+    margin: 0;
+    padding: 0;
+}
+
+.img-perfil {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.fw-strong {
+    font-weight: 500;
+}
+
+.card-box-shadow {
+    --tw-shadow: 0 10px 15px -3px var(--bs-shadow-light), 0 4px 6px -4px var(--bs-shadow-light);
+    box-shadow: var(--tw-shadow);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background-color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card-box-shadow:hover {
+        /* transform: translateY(-5px); */ /* Bu satırı kaldırdık */
+        box-shadow: 0 12px 20px -3px var(--bs-shadow-light), 0 6px 8px -4px var(--bs-shadow-light);
+    }
+
+.bg-primary-custom,
+.btn-primary-custom {
+    background-color: var(--bs-green) !important;
+    border-color: var(--bs-green) !important;
+    color: white;
+}
+
+.bg-secondary-custom,
+.btn-secondary-custom {
+    background-color: var(--bs-darkblue) !important;
+    border-color: var(--bs-darkblue) !important;
+    color: white;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--bs-primary-hover) !important;
+}
+
+.btn-secondary-custom:hover {
+    background-color: var(--bs-secondary-hover) !important;
+}
+
+.text-muted {
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.form-label {
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+
+.navbar-custom {
+    background-color: var(--bs-darkblue);
+    padding: 1rem;
+}
+
+    .navbar-custom a {
+        color: white;
+        margin-right: 1rem;
+        transition: color 0.3s ease;
+    }
+
+        .navbar-custom a:hover {
+            color: var(--bs-green);
+        }
+
+.footer-custom {
+    background-color: var(--bs-dark-secondary);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-custom {
+    padding: 2rem;
+}
+
+/* Modal stilleri */
+.modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    background-color: var(--bs-light);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px var(--bs-shadow-light), 0 4px 6px -4px var(--bs-shadow-light);
+}
+
+.modal-header {
+    background-color: var(--bs-darkblue);
+    color: white;
+    border-bottom: none;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    background-color: var(--bs-light);
+    border-top: none;
+    border-radius: 0 0 0.75rem 0.75rem;
+}

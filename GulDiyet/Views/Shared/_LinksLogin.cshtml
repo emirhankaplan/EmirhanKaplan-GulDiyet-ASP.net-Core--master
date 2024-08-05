@@ -1,0 +1,34 @@
+﻿@using GulDiyet.Core.Application.ViewModels.Users;
+@model UserViewModel
+
+<div class="d-lg-flex col-lg-3 justify-content-lg-end">
+    @if (User != null)
+    {
+        <span class="me-2 p-1 welcome-message">Hoş geldiniz, @Model.Username</span>
+        <a class="btn btn-danger btn-sm logout-button" asp-controller="User" asp-action="LogOut">
+            Oturumu Kapat
+        </a>
+    }
+</div>
+
+<style>
+    .welcome-message {
+        color: #fff;
+        background-color: #808080; /* Green background */
+        border-radius: 5px;
+        padding: 5px 10px;
+    }
+
+    .logout-button {
+        color: #fff;
+        background-color: #f44336; /* Red background */
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+        .logout-button:hover {
+            background-color: #d32f2f; /* Darker red on hover */
+        }
+</style>

@@ -1,0 +1,29 @@
+﻿@model GulDiyet.Core.Application.ViewModels.LaboratoryTests.SaveLaboratoryTestViewModel
+
+@{
+    bool editMode = Model.Id != 0;
+    ViewData["Title"] = "Test Kaydet";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Test Kaydet</h1>
+    <div class="card p-4 shadow-sm">
+        <form asp-controller="LaboratoryTest" asp-action="@(editMode ? "Edit" : "Create")">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">Test Adı</label>
+                <input type="text" asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+            <a class="btn btn-secondary w-100 mt-2" asp-action="Index">İptal</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

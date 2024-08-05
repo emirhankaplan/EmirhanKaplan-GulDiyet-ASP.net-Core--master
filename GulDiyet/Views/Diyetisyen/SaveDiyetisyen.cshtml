@@ -1,0 +1,76 @@
+﻿@model GulDiyet.Core.Application.ViewModels.Diyetisyens.SaveDiyetisyenViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "diyetisyen Kaydet";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mt-5">
+            <div class="card-header bg-primary-custom">
+                <h4>@(editMode ? $"diyetisyen düzenleniyor: {Model.FirstName} {Model.LastName}" : "Yeni bir diyetisyen kaydediliyor")</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" asp-controller="Diyetisyen" asp-action="@(editMode ? "Edit":"Create")">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="FirstName" class="form-label"></label>
+                                <input type="text" asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="LastName" class="form-label"></label>
+                                <input type="text" asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input type="email" asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label"></label>
+                        <input type="tel" asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="IdNumber" class="form-label"></label>
+                        <input type="text" asp-for="IdNumber" class="form-control" />
+                        <span asp-validation-for="IdNumber" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="File" class="form-label"></label>
+                        @if (editMode)
+                        {
+                            <input asp-for="File" class="form-control" />
+                        }
+                        else
+                        {
+                            <input required asp-for="File" class="form-control" />
+                        }
+                        <span asp-validation-for="File" class="text-danger"></span>
+                    </div>
+
+                    <button class="btn btn-primary">Kaydet</button>
+                    <a class="btn btn-secondary" asp-action="Index">İptal</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

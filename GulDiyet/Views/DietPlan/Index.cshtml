@@ -1,0 +1,40 @@
+﻿@model List<GulDiyet.Core.Application.ViewModels.DietPlan.DietPlanViewModel>
+
+@{
+    ViewData["Title"] = "Diyet Planları";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Diyet Planları</h1>
+    <a asp-controller="DietPlan" asp-action="Create" class="btn btn-primary-custom mb-3">
+        Yeni Diyet Planı Oluştur
+    </a>
+    <div class="border rounded-3 p-4 bg-white shadow-sm">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Hasta Adı</th>
+                    <th>Diyetisyen Adı</th>
+                    <th>Plan Detayları</th>
+                    <th>Oluşturulma Tarihi</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dietPlan in Model)
+                {
+                    <tr>
+                        <td>@dietPlan.PatientName</td>
+                        <td>@dietPlan.DiyetisyenId</td>
+                        <td>@dietPlan.PlanDetails</td>
+                        <td>@dietPlan.CreatedDate.ToShortDateString()</td>
+                        <td>
+                            <a asp-controller="DietPlan" asp-action="Edit" asp-route-id="@dietPlan.Id" class="btn btn-warning btn-sm">Düzenle</a>
+                            <a asp-controller="DietPlan" asp-action="Delete" asp-route-id="@dietPlan.Id" class="btn btn-danger btn-sm">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

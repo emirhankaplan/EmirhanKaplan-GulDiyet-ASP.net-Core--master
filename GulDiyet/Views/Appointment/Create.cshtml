@@ -1,0 +1,80 @@
+﻿@model GulDiyet.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+
+@{
+    ViewData["Title"] = "Randevu Kaydet";
+}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary-custom text-white">
+            <h3>Randevu Kaydet</h3>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <div class="mb-3">
+                    <label asp-for="PatientId" class="form-label">Hasta</label>
+                    <select asp-for="PatientId" class="form-control" asp-items="ViewBag.Patients" required>
+                        <option value="">Bir hasta seçin</option>
+                    </select>
+                    <span asp-validation-for="PatientId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DiyetisyenId" class="form-label">Diyetisyen</label>
+                    <select asp-for="DiyetisyenId" class="form-control" asp-items="ViewBag.Diyetisyen" required>
+                        <option value="">Bir Diyetisyen seçin</option>
+                    </select>
+                    <span asp-validation-for="DiyetisyenId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Day" class="form-label">Tarih</label>
+                    <input asp-for="Day" class="form-control" type="date" required min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="Day" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Time" class="form-label">Saat</label>
+                    <select asp-for="Time" class="form-control" required>
+                        <option value="">Bir saat seçin</option>
+                    </select>
+                    <span asp-validation-for="Time" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Reason" class="form-label">Sebep</label>
+                    <textarea asp-for="Reason" class="form-control" required></textarea>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#Day').change(function () {
+                var diyetisyenId = $('#DiyetisyenId').val();
+                var day = $('#Day').val();
+                if (diyetisyenId && day) {
+                    $.getJSON('/Appointment/AvailablePeriods', { diyetisyenId, day }, function (data) {
+                        var $timeDropdown = $('#Time');
+                        $timeDropdown.empty();
+                        if (data && data.length) {
+                            data.forEach(function (time) {
+                                $timeDropdown.append(new Option(time, time));
+                            });
+                        } else {
+                            $timeDropdown.append(new Option('Mevcut uygun saat bulunamadı', ''));
+                        }
+                    }).fail(function () {
+                        alert('Uygun saatleri alırken hata oluştu.');
+                    });
+                }
+            });
+
+            $('#DiyetisyenId').change(function () {
+                $('#Day').trigger('change');
+            });
+        });
+    </script>
+}

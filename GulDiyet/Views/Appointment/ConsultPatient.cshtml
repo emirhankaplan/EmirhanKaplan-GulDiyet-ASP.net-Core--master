@@ -1,0 +1,55 @@
+﻿@model GulDiyet.Core.Application.ViewModels.LaboratoryResult.SaveLaboratoryResultViewModel
+
+@{
+    bool editMode = Model.Id != 0;
+    ViewData["Title"] = "Hasta Konsültasyonu";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mt-3">
+            <div class="card-header bg-primary-custom">
+                <h4>@(editMode ? $"Testi Düzenleme: " : "Yeni Laboratuvar Testi Kaydetme")</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.LaboratoryTests == null || Model.LaboratoryTests.Count == 0)
+                {
+                    <h4 class="mb-3">Kayıtlı laboratuvar testi yok</h4>
+                    <a asp-controller="Appointment" asp-action="Index" class="btn btn-warning">Geri dön</a>
+                }
+                else
+                {
+                    <form asp-controller="Appointment" asp-action="Consult">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="AppointmentId" />
+
+                        <div class="dropdown mb-3 me-2">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownGeneros" data-bs-toggle="dropdown" aria-expanded="false">
+                                Gerçekleştirilecek testleri seç
+                            </button>
+                            <ul class="dropdown-menu px-3" aria-labelledby="dropdownGeneros">
+                                @foreach (var labTest in Model.LaboratoryTests)
+                                {
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="LaboratoryTestIds" value="@labTest.Id" id="labtest-@labTest.Id">
+                                            <label class="form-check-label" for="labtest-@labTest.Id">@labTest.Name</label>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <button class="btn btn-primary">Kaydet</button>
+                        <a class="btn btn-secondary" asp-action="Index">İptal</a>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

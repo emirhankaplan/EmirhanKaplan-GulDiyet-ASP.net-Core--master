@@ -1,0 +1,28 @@
+﻿@model GulDiyet.Core.Application.ViewModels.Email.SaveEmailViewModel
+
+@{
+    ViewData["Title"] = "Yeni E-posta Oluştur";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Yeni E-posta Oluştur</h1>
+    <div class="card p-4 shadow-sm">
+        <form asp-controller="Email" asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="Subject" class="form-label">Konu</label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Body" class="form-label">Mesaj</label>
+                <textarea asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Gönder</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

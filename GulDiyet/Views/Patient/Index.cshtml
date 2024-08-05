@@ -1,0 +1,76 @@
+﻿@using GulDiyet.Core.Application.ViewModels.Patients
+@model List<PatientViewModel>
+
+@{
+    ViewData["Title"] = "Hasta Listesi";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Hasta Listesi</h1>
+    <a asp-controller="Patient" asp-action="Create" class="btn btn-primary-custom mb-3">
+        <i class="bi bi-plus-circle-fill"></i> Yeni Hasta Kaydet
+    </a>
+    <div class="row pt-4">
+        @foreach (PatientViewModel patient in Model)
+        {
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                <div class="card card-box-shadow">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="@patient.ImageUrl" class="rounded-circle card-img-top img-perfil" alt="Hastanın fotoğrafı: @patient.FirstName @patient.LastName">
+                            <h4 class="mb-0">@patient.FirstName @patient.LastName</h4>
+                            <p class="text-muted mb-0">Hasta</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between border-bottom py-2 mt-4">
+                            <span class="fw-strong">Telefon</span>
+                            <span class="text-muted">@patient.Phone</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Adres</span>
+                            <span class="text-muted">@patient.Address</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Kimlik Numarası</span>
+                            <span class="text-muted">@patient.IdNumber</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Doğum Tarihi</span>
+                            <span class="text-muted">@patient.DateBirth.ToShortDateString()</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Sigara İçiyor mu?</span>
+                            @if (patient.IsSmoker)
+                            {
+                                <span class="text-muted">Evet</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Hayır</span>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Alerjisi Var mı?</span>
+                            @if (patient.HasAllergies)
+                            {
+                                <span class="text-muted">Evet</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Hayır</span>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <a class="btn btn-secondary btn-sm me-2" asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id">
+                                <i class="bi bi-pencil-square"></i> Düzenle
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Patient" asp-action="Delete" asp-route-id="@patient.Id">
+                                <i class="bi bi-trash-fill"></i> Sil
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

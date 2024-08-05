@@ -1,0 +1,70 @@
+﻿@model GulDiyet.Core.Application.ViewModels.Patients.SavePatientViewModel
+
+@{
+    bool editMode = Model.Id != 0;
+    ViewData["Title"] = "Hasta Kaydet";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">@ViewData["Title"]</h1>
+    <div class="card p-4 shadow-sm">
+        <form method="post" enctype="multipart/form-data" asp-controller="Patient" asp-action="@(editMode ? "Edit" : "Create")">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="FirstName" class="form-label">İsim</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="LastName" class="form-label">Soyisim</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Telefon</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Adres</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="IdNumber" class="form-label">Kimlik Numarası</label>
+                    <input asp-for="IdNumber" class="form-control" />
+                    <span asp-validation-for="IdNumber" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DateBirth" class="form-label">Doğum Tarihi</label>
+                    <input asp-for="DateBirth" class="form-control" />
+                    <span asp-validation-for="DateBirth" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="File" class="form-label">Fotoğraf</label>
+                <input asp-for="File" class="form-control" />
+                <span asp-validation-for="File" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" asp-for="IsSmoker" />
+                <label class="form-check-label" asp-for="IsSmoker">Sigara İçiyor mu?</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" asp-for="HasAllergies" />
+                <label class="form-check-label" asp-for="HasAllergies">Alerjisi Var mı?</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+            <a class="btn btn-secondary w-100 mt-2" asp-action="Index">İptal</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

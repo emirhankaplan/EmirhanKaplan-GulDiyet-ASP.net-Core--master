@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?health,background') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .jumbotron {
+            background: url('https://images.unsplash.com/photo-1478144592103-25e218a04891?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8aGVhbHRoLHdlbGxuZXNzfHx8fHx8MTcxNzY3MDU2MQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 5rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+            .jumbotron h1 {
+                font-size: 3.5rem;
+            }
+
+        .feature-box {
+            background: white;
+            border: 1px solid #007bff;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .feature-box:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .feature-box h3 {
+                color: #007bff;
+                margin-top: 1rem;
+            }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="jumbotron text-center">
+                        <h1 class="display-4">GULDİYET'e Hoş Geldiniz!</h1>
+                        <p class="lead">Sağlık hizmetleriniz için en iyi deneyimi sunmak için buradayız.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://source.unsplash.com/1600x900/?nutrition,food" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://source.unsplash.com/1600x900/?fitness,exercise" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#homeCarousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#homeCarousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fa fa-users feature-icon fa-3x text-primary"></i>
+                    <h3>Hasta Bakımı</h3>
+                    <p>Uzman ekibimiz size en iyi hizmeti sunmak için burada.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fa fa-flask feature-icon fa-3x text-primary"></i>
+                    <h3>Laboratuvar Testleri</h3>
+                    <p>Modern laboratuvarlarımızla sağlık durumunuzu hızlı ve güvenilir bir şekilde değerlendiriyoruz.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fa fa-user-md feature-icon fa-3x text-primary"></i>
+                    <h3>Diyetisyenler</h3>
+                    <p>Alanında uzman Diyetisyenlerimizle sağlığınızı koruyun ve iyileştirin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

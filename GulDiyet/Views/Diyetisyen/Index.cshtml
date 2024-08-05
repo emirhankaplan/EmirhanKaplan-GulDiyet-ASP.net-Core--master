@@ -1,0 +1,48 @@
+﻿@using GulDiyet.Core.Application.ViewModels.Diyetisyens
+@model List<DiyetisyenViewModel>
+
+@{
+    ViewData["Title"] = "Diyetisyen Listesi";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Diyetisyenlar</h1>
+    <a asp-controller="Diyetisyen" asp-action="Create" class="btn btn-primary-custom mb-3">
+        <i class="bi bi-plus-circle-fill"></i> Diyetisyen Kaydet
+    </a>
+    <div class="border rounded-3 p-4 bg-white shadow-sm">
+        <table class="table table-hover">
+            <thead class="fw-bold fs-5">
+                <tr>
+                    <th>Diyetisyen</th>
+                    <th>E-posta</th>
+                    <th>Telefon</th>
+                    <th>Kimlik Numarası</th>
+                    <th class="text-end">Seçenekler</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (DiyetisyenViewModel Diyetisyen in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Diyetisyen.ImageUrl" class="rounded-circle" alt="@Diyetisyen.FirstName @Diyetisyen.LastName" style="width: 50px; height: 50px; margin-right: 10px;">
+                            @Diyetisyen.FirstName @Diyetisyen.LastName
+                        </td>
+                        <td>@Diyetisyen.Email</td>
+                        <td>@Diyetisyen.Phone</td>
+                        <td>@Diyetisyen.IdNumber</td>
+                        <td class="text-end">
+                            <a class="btn btn-secondary btn-sm" asp-controller="Diyetisyen" asp-action="Edit" asp-route-id="@Diyetisyen.Id">
+                                <i class="bi bi-pencil-square"></i> Düzenle
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Diyetisyen" asp-action="Delete" asp-route-id="@Diyetisyen.Id">
+                                <i class="bi bi-trash-fill"></i> Sil
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

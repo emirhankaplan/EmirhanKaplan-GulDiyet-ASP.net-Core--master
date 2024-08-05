@@ -1,0 +1,95 @@
+﻿@using GulDiyet.Core.Application.ViewModels.Users
+@model SaveUserViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+
+<div class="container mt-5 w-50">
+    <h1 class="mb-3">Yönetici Kaydı</h1>
+    <div class="card card-box-shadow">
+        <div class="card-body">
+            <form method="post" asp-controller="User" asp-action="Register">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label">İsim (Zorunlu)</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label">Soyisim (Zorunlu)</label>
+                            <input asp-for="LastName" class="form-control" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email (Zorunlu)</label>
+                            <input asp-for="Email" class="form-control" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="form-label">Telefon (Zorunlu)</label>
+                            <input asp-for="Phone" type="tel" class="form-control" required />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Kullanıcı Adı (Zorunlu)</label>
+                    <input asp-for="Username" class="form-control" required />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Şifre (Zorunlu)</label>
+                            <input asp-for="Password" class="form-control" required type="password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label">Şifre (Tekrar) (Zorunlu)</label>
+                            <input asp-for="ConfirmPassword" class="form-control" required type="password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-4">
+                    <button class="btn btn-primary me-2 w-25">Kaydet</button>
+                    <a class="btn btn-secondary" asp-action="Login">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+            const inputs = form.querySelectorAll("input[required], select[required], textarea[required]");
+
+            for (const input of inputs) {
+                if (!input.value.trim()) {
+                    alert(`${input.labels[0].textContent} alanı boş bırakılamaz.`);
+                    input.focus();
+                    event.preventDefault();
+                    return;
+                }
+            }
+        });
+    });</script>

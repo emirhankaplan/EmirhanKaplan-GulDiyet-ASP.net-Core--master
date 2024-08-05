@@ -1,0 +1,12 @@
+﻿@model GulDiyet.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+
+<form asp-action="SubmitRating" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <label for="rating">Puan (1-10):</label>
+    <input type="number" id="rating" name="rating" min="1" max="10" required />
+
+    <label for="feedback">Geri Bildirim:</label>
+    <textarea id="feedback" name="feedback"></textarea>
+
+    <button type="submit">Gönder</button>
+</form>

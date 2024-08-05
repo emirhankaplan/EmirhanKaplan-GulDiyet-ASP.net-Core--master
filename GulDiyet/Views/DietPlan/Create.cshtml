@@ -1,0 +1,38 @@
+﻿@model GulDiyet.Core.Application.ViewModels.DietPlan.SaveDietPlanViewModel
+
+@{
+    ViewData["Title"] = "Yeni Diyet Planı Oluştur";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Yeni Diyet Planı Oluştur</h1>
+    <div class="card p-4 shadow-sm">
+        <form asp-controller="DietPlan" asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="PatientId" class="form-label">Hasta</label>
+                <input asp-for="PatientId" class="form-control" />
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DiyetisyenId" class="form-label">Diyetisyen</label>
+                <input asp-for="DiyetisyenId" class="form-control" />
+                <span asp-validation-for="DiyetisyenId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="PlanDetails" class="form-label">Plan Detayları</label>
+                <textarea asp-for="PlanDetails" class="form-control"></textarea>
+                <span asp-validation-for="PlanDetails" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="CreatedDate" class="form-label">Oluşturulma Tarihi</label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Kaydet</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
